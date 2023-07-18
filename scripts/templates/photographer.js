@@ -6,12 +6,13 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         //création des éléments du dom
         const article = document.createElement('article');
-        const a = document.createElement('a');
+        const link = document.createElement('a');
         const img = document.createElement('img');
         const h2 = document.createElement('h2');
         const h3 = document.createElement('h3');
         const pTagline = document.createElement('p');
         const pPrice = document.createElement('p');
+        const url = `./photographer.html?id=${id}`;
 
         //insertion des attributs des éléments
         img.setAttribute("src", picture);
@@ -22,8 +23,9 @@ function photographerTemplate(data) {
         pTagline.setAttribute("class", "tagline");
         pPrice.setAttribute("aria-label", pPrice.textContent);
         pPrice.setAttribute("class", "prix");
-        a.setAttribute("aria-role", "lien vers page du photographe");
-        a.setAttribute("aria-label", "lien vers page du photographe");
+        link.setAttribute("aria-role", "lien vers page du photographe");
+        link.setAttribute("aria-label", "lien vers page du photographe");
+        link.setAttribute("href", url);
 
         //indication des textes à afficher
         h2.textContent = name;
@@ -32,40 +34,33 @@ function photographerTemplate(data) {
         pPrice.textContent = price + "€/jour";
 
         //affichage des éléments du dom en fonction de l'emplacement choisi
-        article.appendChild(a);
-        a.appendChild(img);
-        a.appendChild(h2);
-        a.appendChild(h3);
-        a.appendChild(pTagline);
-        a.appendChild(pPrice);
+        article.appendChild(link);
+        link.appendChild(img);
+        link.appendChild(h2);
+        link.appendChild(h3);
+        link.appendChild(pTagline);
+        link.appendChild(pPrice);
 
-        //redirection vers la page du photigraphe
-        a.href = `photographer.html`;
+
         return (article);
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
-}
 
-function informationsPhotographerTemplate(data) {
-
-    const { name, portrait, city, country, tagline, price } = data
-
-    const identite = `assets/samplePhotos/Photographers_ID_Photos/${portrait}`;
-
-    function getPhotographersDom() {
+    function getPhotographerDom() {
 
         //création des éléments du dom
-        const asset = document.createElement('asset');
+        const header = document.createElement('div');
         const img = document.createElement('img');
         const h2 = document.createElement('h2');
         const h3 = document.createElement('h3');
         const pTagline = document.createElement('p');
         const pPrice = document.createElement('p');
-        const div = document.createElement('div');
+        const divPresentation = document.createElement('div');
         const button = document.createElement('button');
+        const divImg = document.createElement('div');
+
 
         //insertion des attributs des éléments
-        img.setAttribute("src", identite);
+        img.setAttribute("src", picture);
         img.setAttribute("alt", name);
         h2.setAttribute("aria-label", name);
         h3.setAttribute("aria-label", h3.textContent);
@@ -73,62 +68,37 @@ function informationsPhotographerTemplate(data) {
         pTagline.setAttribute("class", "tagline");
         pPrice.setAttribute("aria-label", pPrice.textContent);
         pPrice.setAttribute("class", "prix");
-        div.setAttribute("class", "identite");
+        divPresentation.setAttribute("class", "presentation");
         button.setAttribute("class", "contact_button");
         button.setAttribute("aria-role", "modale");
         button.setAttribute("aria-label", "contactez-moi");
+        button.setAttribute("onclick", displayModal());
+        divImg.setAttribute("class", "portrait");
+        divImg.setAttribute("aria-role", "image");
+        header.setAttribute("class", "photograph-header")
+        header.setAttribute("aria-role", "header");
 
         //indication des textes à afficher
         h2.textContent = name;
         h3.textContent = city + ", " + country;
         pTagline.textContent = tagline;
         pPrice.textContent = price + "€/jour";
+        button.textContent = "contactez-moi";
 
         //affichage des éléments du dom en fonction de l'emplacement choisi
-        asset.appendChild(div);
-        div.appendChild(h2);
-        div.appendChild(h3);
-        div.appendChild(pTagline);
-        div.appendChild(pPrice);
-        asset.appendChild(button);
-        asset.appendChild(img);
+        header.appendChild(divPresentation);
+        divPresentation.appendChild(h2);
+        divPresentation.appendChild(h3);
+        divPresentation.appendChild(pTagline);
+        divPresentation.appendChild(pPrice);
+        header.appendChild(button);
+        divImg.appendChild(img);
+        header.appendChild(divImg);
 
-        return (asset);
-    }
-}
-
-function pictureTemplate(data) {
-
-    const { id, photographerId, title, image, likes, date, price } = data;
-
-    const picture = `assets/samplePhotos/${photographer}/${image}`;
-
-    function getPicturesDom() {
-
-        //création des éléments du dom
-        const article = document.createElement('article');
-        const img = document.createElement('img');
-        const h3 = document.createElement('h3');
-        const p = document.createElement('p');
-
-        //insertion des attributs des éléments
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", title);
-        img.setAttribute("aria-role", "informations image");
-        h3.setAttribute("aria-label", title);
-        p.setAttribute("aria-label", likes + "likes");
-
-        //indication des textes à afficher
-        h3.textContent = title;
-        p.textContent = likes + '<i class="fa-solid fa-heart"></i>';
-
-        //affichage des éléments du dom en fonction de l'emplacement choisi
-        article.appendChild(img);
-        article.appendChild(h3);
-        article.appendChild(p);
-
-        return (article);
+        return (header);
     }
 
-
+    return { name, picture, city, country, tagline, price, getUserCardDOM, getPhotographerDom }
 }
+
+

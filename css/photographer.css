@@ -2,10 +2,9 @@
     display: none;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+#main {
+    display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .contact_button {
@@ -19,6 +18,52 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    align-items: center;
+    width: 100%;
+}
+
+.photograph-header .portrait {
+    width: 30%;
+}
+
+.photograph-header .portrait img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-left: 65%;
+    object-fit: cover;
+}
+
+.photograph-header .presentation {
+    width: 30%;
+}
+
+.photograph-header .presentation h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin: 0;
+}
+
+.photograph-header .presentation h3 {
+    color: #D3573C;
+    font-size: 18px;
+    font-weight: 100;
+    margin: 0;
+}
+
+.photograph-header .portrait p {
+    margin: 0.5em 0 0 0;
+    font-size: 14px;
+    color: black;
 }
 
 .modal {
