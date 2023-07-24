@@ -2,10 +2,11 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/photohrapher.css" rel="stylesheet" type="text/css" />
+
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/67de550683.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -15,8 +16,17 @@
       </a>
     </header>
     <main id="main">
-      
-      <div class="pictturesSection"></div>
+      <button id="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div class="picturesSection">
+        <form action="post">
+          <label for="tri">Trier par</label>
+          <select class="contact_button" id="tri" name="tri">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </form>
+      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">

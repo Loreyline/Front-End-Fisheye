@@ -41,7 +41,6 @@ function photographerTemplate(data) {
         link.appendChild(pTagline);
         link.appendChild(pPrice);
 
-
         return (article);
     }
 
@@ -55,9 +54,8 @@ function photographerTemplate(data) {
         const pTagline = document.createElement('p');
         const pPrice = document.createElement('p');
         const divPresentation = document.createElement('div');
-        const button = document.createElement('button');
+        const button = document.getElementById('contact');
         const divImg = document.createElement('div');
-
 
         //insertion des attributs des éléments
         img.setAttribute("src", picture);
@@ -72,7 +70,6 @@ function photographerTemplate(data) {
         button.setAttribute("class", "contact_button");
         button.setAttribute("aria-role", "modale");
         button.setAttribute("aria-label", "contactez-moi");
-        button.setAttribute("onclick", displayModal());
         divImg.setAttribute("class", "portrait");
         divImg.setAttribute("aria-role", "image");
         header.setAttribute("class", "photograph-header")

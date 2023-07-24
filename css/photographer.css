@@ -53,7 +53,7 @@
     margin: 0;
 }
 
-.photograph-header .presentation h3 {
+h3 {
     color: #D3573C;
     font-size: 18px;
     font-weight: 100;
@@ -64,6 +64,61 @@
     margin: 0.5em 0 0 0;
     font-size: 14px;
     color: black;
+}
+
+.picturesSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: auto;
+}
+
+.picturesSection article {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 33%;
+}
+
+.picturesSection article img {
+    width: 30rem;
+    height: 30rem;
+    margin: auto;
+    object-fit: cover;
+    object-position: top;
+}
+
+.picturesSection article section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.picturesSection article section p {
+    font-weight: bold;
+    color: #D3573C;
+}
+
+.picturesSection form {
+    display: flex;
+    flex-direction: row;
+    height: 10rem;
+    align-items: center;
+    margin-left: 5%;
+}
+
+.picturesSection form label {
+    margin-right: 3%;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.picturesSection form select option {
+    border-bottom: 1px solid #FAFAFA;
+    height: 2rem;
+
 }
 
 .modal {

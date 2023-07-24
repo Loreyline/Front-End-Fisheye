@@ -32,14 +32,13 @@ async function getMedias() {
 
 async function displayDataPhotographer(photographer) {
     const photographHeader = document.querySelector("#main");
-
     const photographerModel = photographerTemplate(photographer);
     const photographerDom = photographerModel.getPhotographerDom();
     photographHeader.appendChild(photographerDom);
 }
 
 async function displayMedia(media) {
-    const picturesSection = document.querySelector(".pictturesSection");
+    const picturesSection = document.querySelector(".picturesSection");
 
     if (picturesSection) {
         media.forEach((picture) => {
