@@ -81,7 +81,8 @@ h3 {
     width: 33%;
 }
 
-.picturesSection article img {
+.picturesSection article img,
+.picturesSection article video {
     width: 30rem;
     height: 30rem;
     margin: auto;
@@ -89,11 +90,13 @@ h3 {
     object-position: top;
 }
 
+
 .picturesSection article section {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin-right: 20%;
 }
 
 .picturesSection article section p {
