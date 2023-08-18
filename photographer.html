@@ -26,8 +26,11 @@
             <option value="title">Titre</option>
           </select>
         </form>
-        <div class="encart">          
-          <span class="textEncart" id="nbLikes"></span>          
+        <div class="encart">  
+          <div class="likes">        
+            <span class="textEncart" id="nbLikes"></span>
+            <i class="fa-solid fa-heart"></i> 
+          </div>         
           <span id="price"></span>
         </div>
       </div>
@@ -38,7 +41,7 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form method="post" action="#">
 					<div
                 class="formData">
                 <label for="first">Prénom</label><br>
@@ -48,6 +51,9 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  aria-labelledby="Prénom"
+                  aria-required=true
+                  aria-invalid="false"
                 /><br>
                 <div class="erreur" id="erreurPrenom"></div><br>
               </div>
@@ -59,6 +65,9 @@
                   type="text"
                   id="last"
                   name="last"
+                  aria-labelledby="Nom"
+                  aria-required=true
+                  aria-invalid="false"
                 /><br>
                 <div class="erreur" id="erreurNom"></div><br>
               </div>
@@ -70,6 +79,9 @@
                   type="email"
                   id="email"
                   name="email"
+                  aria-labelledby="email"
+                  aria-required=true
+                  aria-invalid="false"
                 /><br>
                 <div class="erreur" id="erreurMail"></div><br>
               </div>
@@ -81,10 +93,13 @@
                   rows="5" cols="30"
                   id="message"
                   name="message"
+                  aria-labelledby="message"
+                  aria-required=true
+                  aria-invalid="false"
                 ></textarea><br>
                 <div class="erreur" id="erreurMessage"></div><br>
               </div>
-          <input type="submit" class="contact_button" value="Envoyer" id="envoi"/>
+          <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer"/>
 				</form>
 			</div>
 		</div>

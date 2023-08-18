@@ -2,8 +2,8 @@ function pictureTemplate(data) {
 
     const { id, photographerId, title, image, video, likes, date, price } = data;
 
-    const picture = `assets/samplePhotos/${photographerId}/${image}`;
-    const mediaVideo = `assets/samplePhotos/${photographerId}/${video}`;
+    const picture = `assets/images/${photographerId}/${image}`;
+    const mediaVideo = `assets/images/${photographerId}/${video}`;
 
     function getPicturesDom() {
 
@@ -21,6 +21,11 @@ function pictureTemplate(data) {
         const lienLightBox = document.createElement('a');
         const lienVideo = document.createElement('a');
         let idButton = id + "like";
+        const idMedia = id + "Media";
+        const mediaLink = document.createElement('a');
+        let mediaLinkElement;
+        let mediaLightboxElement;
+        let mediaElement;
 
 
         //gestion des likes
@@ -53,18 +58,21 @@ function pictureTemplate(data) {
         });
 
         //insertion des attributs des éléments
+        article.setAttribute("class", "media");
         source.setAttribute("src", mediaVideo);
         video.setAttribute("controls", true);
         source.setAttribute("type", "video/mp4");
         video.setAttribute("aria-role", "informations video");
         video.setAttribute("class", "mediaVideo media");
+        video.setAttribute("id", id);
         img.setAttribute("src", picture);
         img.setAttribute("alt", title);
         img.setAttribute("aria-role", "informations image");
         img.setAttribute("class", "mediaImage media");
+        img.setAttribute("id", id);
         h3.setAttribute("aria-label", title);
         pLike.setAttribute("aria-label", sLikes.textContent + "likes");
-        pLike.setAttribute("id", id);
+        pLike.setAttribute("id", idMedia);
         likeButton.setAttribute('role', 'button');
         likeButton.setAttribute('aria-label', 'Like');
         likeButton.setAttribute("title", "likes");
@@ -72,11 +80,21 @@ function pictureTemplate(data) {
         lienLightBox.setAttribute("class", "lienLightBox")
         lienVideo.setAttribute("href", mediaVideo);
         sLikes.setAttribute('role', 'text');
+        mediaLink.setAttribute("class", "mediaLink");
 
         if (video) {
-            lienLightBox.setAttribute("href", mediaVideo);
+            mediaLink.setAttribute("href", mediaVideo);
+
+            mediaElement = video;
+            mediaLinkElement = mediaElement.cloneNode(true);
+            mediaLinkElement.setAttribute("href", mediaVideo);
+            mediaLinkElement.setAttribute("target", "_blank");
+
+            const mediaLinkVideoElement = mediaElement.cloneNode(true);
+            mediaLink.appendChild(mediaLinkVideoElement);
+
         } else {
-            lienLightBox.setAttribute("href", picture);
+            mediaLink.setAttribute("href", picture);
         }
 
         //indication des textes à afficher
@@ -104,7 +122,7 @@ function pictureTemplate(data) {
         pLike.appendChild(likeButton);
 
 
-        //rechercher les médias dans la lightbox
+        //création de la lightBox
 
 
         return (article);

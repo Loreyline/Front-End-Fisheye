@@ -18,20 +18,20 @@ async function getPhotographer() {
 function tri() {
     const tri = document.querySelector("#tri");
     tri.addEventListener("change", function () {
-        if (tri.value === "popularity") {
-            // console.log(tri.value);
-            return ('popularity');
-        } else if (tri.value === "date") {
-            //  console.log(tri.value);
-            return ('date');
-        } else {
-            //  console.log(tri.value);
-            return ('title');
-        }
-    })
+
+        if (tri.value == 'popularity') {
+            sortBy = "popularity";
+
+        } else if (tri.value == 'date') {
+            sortBy = "date";
+        } else if (tri.value == 'title') {
+            sortBy = "title";
+        };
+        return (sortBy);
+    });
 }
 
-async function getMedias(sortBy = 'title') {
+async function getMedias() {
     const parameters = new URLSearchParams(window.location.search)
     const idString = parameters.get('id')
 
@@ -45,17 +45,8 @@ async function getMedias(sortBy = 'title') {
         (mediaObj) => mediaObj.photographerId == idString
     );
 
-    sortBy = tri();
-    if (sortBy === 'popularity') {
-        media.sort((a, b) => b.likes - a.likes);
-        console.log(sortBy);
-    } else if (sortBy === 'date') {
-        media.sort((a, b) => new Date(b.date) - new Date(a.date));
-        console.log(sortBy);
-    } else if (sortBy === 'title') {
-        media.sort((a, b) => a.title.localeCompare(b.title));
-        console.log(sortBy);
-    };
+
+
     return media;
 }
 
@@ -71,7 +62,7 @@ async function displayDataPhotographer(photographer) {
     encart.textContent = photographerModel.price + "€/Jour";
 }
 
-async function displayMedia(media) {
+async function displayMedia(media, sortBy = 'popularity') {
     const picturesSection = document.querySelector(".picturesSection");
 
     let totalLikes = 0;
@@ -81,32 +72,41 @@ async function displayMedia(media) {
             const pictureModel = pictureTemplate(picture);
             const pictureCardDOM = pictureModel.getPicturesDom();
             picturesSection.appendChild(pictureCardDOM);
+            const encart = document.getElementById("nbLikes");
             let id = pictureModel.id + "like";
             totalLikes += pictureModel.likes;
+            encart.textContent = totalLikes;
             const likeButton = document.getElementById(id);
             pictureModel.isliked = false;
             likeButton.addEventListener("click", function () {
                 if (pictureModel.isliked) {
                     totalLikes--;
                     pictureModel.isliked = false;
-                    console.log(totalLikes);
+
                 } else {
                     totalLikes++;
                     pictureModel.isliked = true;
-                    console.log(totalLikes);
+
                 }
-                //return (totalLikes);
+
+                encart.textContent = totalLikes;
             });
 
+            sortBy = tri();
+
+            if (sortBy == 'popularity') {
+                media.sort((a, b) => b.likes - a.likes);
+                console.log(sortBy);
+            } else if (sortBy == 'date') {
+                media.sort((a, b) => new Date(b.date) - new Date(a.date));
+                console.log(sortBy);
+            } else if (sortBy == 'title') {
+                media.sort((a, b) => a.title.localeCompare(b.title));
+                console.log(sortBy);
+            };
         });
-        const encart = document.getElementById("nbLikes");
-        const heart = document.createElement('i');
-        heart.setAttribute("class", "fa-solid fa-heart");
-        encart.textContent = totalLikes;
-        //heart.appendChild(encart);
+
     }
-
-
 }
 
 

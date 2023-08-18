@@ -207,6 +207,12 @@ form .erreur {
     padding-left: 1%;
     justify-content: space-between;
     padding-right: 1%;
+
+}
+
+.likes {
+    width: 50%;
+    font-size: 24px;
 }
 
 .textEncart {
@@ -216,4 +222,5 @@ form .erreur {
 
 #price {
     font-weight: bold;
+    font-size: 24px;
 }
