@@ -2,15 +2,14 @@ function pictureTemplate(data) {
 
     const { id, photographerId, title, image, video, likes, date, price } = data;
 
-    const picture = `assets/images/${photographerId}/${image}`;
-    const mediaVideo = `assets/images/${photographerId}/${video}`;
+    const picture = `./assets/images/${photographerId}/${image}`;
+    const mediaVideo = `./assets/images/${photographerId}/${video}`;
 
     function getPicturesDom() {
 
         //création des éléments du dom
         const article = document.createElement('article');
         const section = document.createElement('section');
-        const video = document.createElement('video');
         const source = document.createElement('source');
         const img = document.createElement('img');
         const h3 = document.createElement('h3');
@@ -24,7 +23,7 @@ function pictureTemplate(data) {
         const idMedia = id + "Media";
         const mediaLink = document.createElement('a');
         let mediaLinkElement;
-        let mediaLightboxElement;
+        const mediaLightboxElement = document.createElement('div');
         let mediaElement;
 
 
@@ -60,16 +59,7 @@ function pictureTemplate(data) {
         //insertion des attributs des éléments
         article.setAttribute("class", "media");
         source.setAttribute("src", mediaVideo);
-        video.setAttribute("controls", true);
         source.setAttribute("type", "video/mp4");
-        video.setAttribute("aria-role", "informations video");
-        video.setAttribute("class", "mediaVideo media");
-        video.setAttribute("id", id);
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", title);
-        img.setAttribute("aria-role", "informations image");
-        img.setAttribute("class", "mediaImage media");
-        img.setAttribute("id", id);
         h3.setAttribute("aria-label", title);
         pLike.setAttribute("aria-label", sLikes.textContent + "likes");
         pLike.setAttribute("id", idMedia);
@@ -81,21 +71,62 @@ function pictureTemplate(data) {
         lienVideo.setAttribute("href", mediaVideo);
         sLikes.setAttribute('role', 'text');
         mediaLink.setAttribute("class", "mediaLink");
+        mediaLightboxElement.setAttribute("class", "mediaLightbox");
 
         if (video) {
             mediaLink.setAttribute("href", mediaVideo);
 
-            mediaElement = video;
+            mediaElement = document.createElement('video');
+            mediaElement.setAttribute("class", "mediaVideo media");
+            mediaElement.setAttribute("src", mediaVideo);
+            mediaElement.setAttribute("controls", true);
+            mediaElement.setAttribute("aria-role", "img");
+            mediaElement.setAttribute("id", id);
             mediaLinkElement = mediaElement.cloneNode(true);
             mediaLinkElement.setAttribute("href", mediaVideo);
             mediaLinkElement.setAttribute("target", "_blank");
+            mediaLinkElement.appendChild(source);
 
             const mediaLinkVideoElement = mediaElement.cloneNode(true);
             mediaLink.appendChild(mediaLinkVideoElement);
 
+            //pour la lightbox
+            const mediaLightboxVideoElement = document.createElement('video');
+            mediaLightboxVideoElement.setAttribute("class", "mediaLightbox");
+            mediaLightboxVideoElement.setAttribute("src", mediaVideo);
+            mediaLightboxVideoElement.setAttribute("controls", true);
+            mediaLightboxVideoElement.setAttribute("aria-role", "img");
+            mediaLightboxVideoElement.setAttribute("id", id);
+            mediaLightboxVideoElement.setAttribute('loop', '');
+            mediaLightboxVideoElement.appendChild(source);
+
+
+            mediaLightboxElement.setAttribute("class", "mediaLightbox");
+            mediaLightboxElement.appendChild(mediaLightboxVideoElement);
+
         } else {
             mediaLink.setAttribute("href", picture);
+
+            mediaElement = document.createElement('img');
+            mediaElement.setAttribute("class", "mediaVideo media");
+            mediaElement.setAttribute("src", picture);
+            mediaElement.setAttribute("alt", title);
+            mediaElement.setAttribute("aria-role", "img");
+            mediaElement.setAttribute("id", id);
+            mediaLinkElement = mediaElement.cloneNode(true);
+            mediaLinkElement.setAttribute("href", picture);
+            mediaLinkElement.setAttribute("target", "_blank");
+
+            const mediaLinkImgElement = mediaElement.cloneNode(true);
+            mediaLink.appendChild(mediaLinkImgElement);
+            const mediaLightboxImgElement = mediaElement.cloneNode(true);
+            mediaLightboxElement.classList.add('mediaLightbox');
+            mediaLightboxElement.appendChild(mediaLightboxImgElement);
         }
+
+
+
+
 
         //indication des textes à afficher
         h3.textContent = title;
@@ -105,16 +136,16 @@ function pictureTemplate(data) {
 
 
         //affichage des éléments du dom en fonction de l'emplacement choisi
-        if (data.image) {
-            lienLightBox.appendChild(img);
-        } else {
-            lienLightBox.appendChild(video);
-            video.appendChild(source);
-            video.appendChild(pVideo);
-            pVideo.appendChild(lienVideo);
-        }
+        // if (data.image) {
+        //     lienLightBox.appendChild(img);
+        // } else {
+        //     lienLightBox.appendChild(video);
+        //     video.appendChild(source);
+        //     video.appendChild(pVideo);
+        //     pVideo.appendChild(lienVideo);
+        // }
 
-        article.appendChild(lienLightBox);
+        article.appendChild(mediaLink);
         article.appendChild(section);
         section.appendChild(h3);
         section.appendChild(pLike);
