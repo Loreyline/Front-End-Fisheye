@@ -1,6 +1,7 @@
 function openLightbox() {
     const box = document.getElementById("lightbox");
     box.style.display = "block";
+    showSlides(slideIndex)
 }
 
 function closeLightbox() {
@@ -11,23 +12,28 @@ function closeLightbox() {
 let slideIndex = 1;
 showSlides(slideIndex);
 
-function next(n) {
-    showSlides(slideIndex += n);
-    console.log("next");
+function next() {
+    slideIndex += 1;
+
+    showSlides(slideIndex);
 }
-function previous(n) {
-    showSlides(slideIndex = n);
-    console.log("prev");
+function previous() {
+    slideIndex -= 1;
+
+    showSlides(slideIndex);
 }
 
-function showSlides(n) {
-    let i;
+function showSlides(slideIndex) {
+
     let slides = document.getElementsByClassName("slide");
 
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    if (slideIndex < 1) { slideIndex = slides.length }
+
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
+
     }
-    slides[slideIndex - 1].style.display = "block";
+
+    slides[slideIndex - 1].style.display = "flex";
 }

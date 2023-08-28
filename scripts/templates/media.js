@@ -109,14 +109,16 @@ function pictureTemplate(data) {
 
         //affichage dans la lightbox
         const container = document.querySelector('.lightbox__container');
-        lienLightBox.addEventListener("click", function (e) {
-            e.preventDefault;
-            const slide = document.createElement('div');
-            slide.setAttribute("class", "slide");
-            container.appendChild(slide);
-            slide.appendChild(imgLightbox);
-        })
 
+        const slide = document.createElement('div');
+        slide.setAttribute("class", "slide");
+        container.appendChild(slide);
+        if (data.image) {
+            slide.appendChild(imgLightbox);
+        } else {
+            slide.appendChild(videoLightbox);
+            videoLightbox.appendChild(sourceLightbox);
+        }
 
         return (article);
     }

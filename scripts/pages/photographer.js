@@ -15,21 +15,7 @@ async function getPhotographer() {
     return photographer;
 }
 
-function tri() {
-    const tri = document.querySelector("#tri");
-    tri.addEventListener("change", function () {
 
-        if (tri.value == 'popularity') {
-            sortBy = "popularity";
-
-        } else if (tri.value == 'date') {
-            sortBy = "date";
-        } else if (tri.value == 'title') {
-            sortBy = "title";
-        };
-        return (sortBy);
-    });
-}
 
 async function getMedias() {
     const parameters = new URLSearchParams(window.location.search)
@@ -59,7 +45,24 @@ async function displayDataPhotographer(photographer) {
     encart.textContent = photographerModel.price + "€/Jour";
 }
 
-async function displayMedia(media, sortBy = 'title') {
+function tri(media) {
+    const tri = document.querySelector("#tri");
+    tri.addEventListener("change", function () {
+
+        if (tri.value == 'popularity') {
+            media.sort((a, b) => b.likes - a.likes);
+
+        } else if (tri.value == 'date') {
+            media.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        } else if (tri.value == 'title') {
+            media.sort((a, b) => a.title.localeCompare(b.title));
+
+        };
+
+    });
+}
+async function displayMedia(media) {
     const picturesSection = document.querySelector(".picturesSection");
 
     let totalLikes = 0;
@@ -86,18 +89,7 @@ async function displayMedia(media, sortBy = 'title') {
                 encart.textContent = totalLikes;
             });
 
-            sortBy = tri();
-
-            if (sortBy == 'popularity') {
-                media.sort((a, b) => b.likes - a.likes);
-                console.log(sortBy);
-            } else if (sortBy == 'date') {
-                media.sort((a, b) => new Date(b.date) - new Date(a.date));
-                console.log(sortBy);
-            } else if (sortBy == 'title') {
-                media.sort((a, b) => a.title.localeCompare(b.title));
-                console.log(sortBy);
-            };
+            tri();
         });
 
     }
