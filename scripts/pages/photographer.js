@@ -44,9 +44,6 @@ async function getMedias() {
     let media = photographerData.media.filter(
         (mediaObj) => mediaObj.photographerId == idString
     );
-
-
-
     return media;
 }
 
@@ -62,7 +59,7 @@ async function displayDataPhotographer(photographer) {
     encart.textContent = photographerModel.price + "€/Jour";
 }
 
-async function displayMedia(media, sortBy = 'popularity') {
+async function displayMedia(media, sortBy = 'title') {
     const picturesSection = document.querySelector(".picturesSection");
 
     let totalLikes = 0;
@@ -82,13 +79,10 @@ async function displayMedia(media, sortBy = 'popularity') {
                 if (pictureModel.isliked) {
                     totalLikes--;
                     pictureModel.isliked = false;
-
                 } else {
                     totalLikes++;
                     pictureModel.isliked = true;
-
                 }
-
                 encart.textContent = totalLikes;
             });
 

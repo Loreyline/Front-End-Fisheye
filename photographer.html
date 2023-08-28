@@ -104,8 +104,11 @@
 			</div>
 		</div>
      <!-- lightbox -->
-     <div class="lightBox" id="lightBox" role="dialog">      
-       
+    <div class="lightbox" id="lightbox" role="dialog">      
+      <button class="lightbox__close" onclick="closeLightbox()">X</button>
+      <button class="lightbox__next" onclick="next()"><i class= "fa fa-chevron-right"></i></button>
+      <button class="lightbox__prev" onclick="previous()"><i class= "fa fa-chevron-left"></i></button>
+      <div class="lightbox__container"></div>
     </div>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/templates/media.js"></script>
