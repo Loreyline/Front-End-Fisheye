@@ -24,6 +24,7 @@ function pictureTemplate(data) {
         const imgLightbox = document.createElement('img');
         const videoLightbox = document.createElement('video');
         const sourceLightbox = document.createElement('source');
+        const titleLightbox = document.createElement('p');
 
         //gestion des likes
         data.isLiked = false;
@@ -81,13 +82,15 @@ function pictureTemplate(data) {
         videoLightbox.setAttribute("aria-role", "img");
         imgLightbox.setAttribute("src", picture);
         imgLightbox.setAttribute("alt", title);
-        imgLightbox.setAttribute("aria-role", "img");
+        imgLightbox.setAttribute("aria-role", "Lilac breasted roller");
+        titleLightbox.setAttribute("class", "textLightbox");
+        titleLightbox.setAttribute("aria-label", title);
 
         //indication des textes à afficher
         h3.textContent = title;
         pVideo.textContent = "Votre navigateur ne prend pas en charge les vidéos. Voici, à la place, un ";
         lienVideo.textContent = "lien vers la vidéo";
-
+        titleLightbox.textContent = title;
 
 
         //affichage des éléments du dom en fonction de l'emplacement choisi
@@ -112,12 +115,15 @@ function pictureTemplate(data) {
 
         const slide = document.createElement('div');
         slide.setAttribute("class", "slide");
+        slide.setAttribute("aria-label", "image closeup view")
         container.appendChild(slide);
         if (data.image) {
             slide.appendChild(imgLightbox);
+            slide.appendChild(titleLightbox);
         } else {
             slide.appendChild(videoLightbox);
             videoLightbox.appendChild(sourceLightbox);
+            slide.appendChild(titleLightbox);
         }
 
         return (article);

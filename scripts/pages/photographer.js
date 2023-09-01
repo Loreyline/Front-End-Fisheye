@@ -45,33 +45,36 @@ async function displayDataPhotographer(photographer) {
     encart.textContent = photographerModel.price + "€/Jour";
 }
 
-function tri(media) {
-    const tri = document.querySelector("#tri");
-    tri.addEventListener("change", function () {
 
-        if (tri.value == 'popularity') {
-            media.sort((a, b) => b.likes - a.likes);
-
-        } else if (tri.value == 'date') {
-            media.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        } else if (tri.value == 'title') {
-            media.sort((a, b) => a.title.localeCompare(b.title));
-
-        };
-
-    });
-}
 async function displayMedia(media) {
     const picturesSection = document.querySelector(".picturesSection");
-
-    let totalLikes = 0;
+    const tri = document.querySelector("#tri");
     if (picturesSection) {
+        tri.addEventListener("change", function () {
+            let media = [getMedias()];
+
+            if (tri.value == 'popularity') {
+                media.sort((a, b) => b.likes - a.likes);
+
+
+            } else if (tri.value == 'date') {
+                media.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+
+            } else if (tri.value == 'title') {
+                media.sort((a, b) => a.title.localeCompare(b.title));
+
+            };
+
+        });
+        let totalLikes = 0;
+
 
         media.forEach((picture) => {
             const pictureModel = pictureTemplate(picture);
             const pictureCardDOM = pictureModel.getPicturesDom();
             picturesSection.appendChild(pictureCardDOM);
+
             const encart = document.getElementById("nbLikes");
             let id = pictureModel.id + "like";
             totalLikes += pictureModel.likes;
@@ -88,10 +91,8 @@ async function displayMedia(media) {
                 }
                 encart.textContent = totalLikes;
             });
-
-            tri();
         });
-
+        // tri();
     }
 }
 
@@ -104,6 +105,7 @@ async function init() {
 
     //infos médias
     const photographerMedias = await getMedias();
+
     displayMedia(photographerMedias);
 }
 
