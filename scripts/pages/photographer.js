@@ -47,26 +47,11 @@ async function displayDataPhotographer(photographer) {
 
 
 async function displayMedia(media) {
-    const picturesSection = document.querySelector(".picturesSection");
-    const tri = document.querySelector("#tri");
+    const picturesSection = document.querySelector(".afficherMedias");
+
+
     if (picturesSection) {
-        tri.addEventListener("change", function () {
-            let media = [getMedias()];
 
-            if (tri.value == 'popularity') {
-                media.sort((a, b) => b.likes - a.likes);
-
-
-            } else if (tri.value == 'date') {
-                media.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-
-            } else if (tri.value == 'title') {
-                media.sort((a, b) => a.title.localeCompare(b.title));
-
-            };
-
-        });
         let totalLikes = 0;
 
 
@@ -92,10 +77,41 @@ async function displayMedia(media) {
                 encart.textContent = totalLikes;
             });
         });
-        // tri();
+
     }
 }
 
+function tri(photographerMedias) {
+    let mediasTries;
+    const tri = document.querySelector("#tri");
+    tri.addEventListener("change", function () {
+        mediasTries = "";
+        const container = document.querySelector('.afficherMedias');
+        container.innerHTML = "";
+        switch (tri.value) {
+
+            case 'popularity':
+                mediasTries = photographerMedias.sort((a, b) => b.likes - a.likes);
+                displayMedia(mediasTries);
+                break;
+
+            case 'date':
+                mediasTries = photographerMedias.sort((a, b) => new Date(b.date) - new Date(a.date));
+                displayMedia(mediasTries);
+                break;
+
+            case 'title':
+                mediasTries = photographerMedias.sort((a, b) => a.title.localeCompare(b.title));
+                displayMedia(mediasTries);
+                break;
+
+            default:
+                displayMedia(photographerMedias);
+                break;
+        };
+
+    });
+}
 
 async function init() {
 
@@ -105,8 +121,8 @@ async function init() {
 
     //infos médias
     const photographerMedias = await getMedias();
-
     displayMedia(photographerMedias);
+    tri(photographerMedias);
 }
 
 init();
