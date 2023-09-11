@@ -60,10 +60,11 @@ function pictureTemplate(data) {
         source.setAttribute("src", mediaVideo);
         video.setAttribute("controls", true);
         source.setAttribute("type", "video/mp4");
-        video.setAttribute("aria-role", "img");
+        //video.setAttribute("aria-role", "img");
+        video.setAttribute('aria-label', 'title');
         img.setAttribute("src", picture);
         img.setAttribute("alt", title);
-        img.setAttribute("aria-role", "img");
+        //img.setAttribute("aria-role", "img");
         h3.setAttribute("aria-label", title);
         pLike.setAttribute("aria-label", sLikes.textContent + "likes");
         pLike.setAttribute("id", id);
@@ -80,6 +81,7 @@ function pictureTemplate(data) {
         videoLightbox.setAttribute("controls", true);
         sourceLightbox.setAttribute("type", "video/mp4");
         videoLightbox.setAttribute("aria-role", "img");
+        videoLightbox.setAttribute('aria-label', 'title');
         imgLightbox.setAttribute("src", picture);
         imgLightbox.setAttribute("alt", title);
         imgLightbox.setAttribute("aria-role", "Lilac breasted roller");

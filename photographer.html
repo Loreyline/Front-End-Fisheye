@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
@@ -12,10 +12,78 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="logo Fisheye"/>
       </a>
     </header>
     <main id="main">
+      <div id="contact_modal">
+        <div class="modal">
+          <header>
+            <h2>Contactez-moi</h2>
+            <img src="assets/icons/close.svg" onclick="closeModal()" />
+          </header>
+          <form method="post" action="#">
+            <div
+                  class="formData">
+                  <label for="first">Prénom</label><br>
+                  <input
+                    class="text-control"
+                    type="text"
+                    id="first"
+                    name="first"
+                    minlength="2"
+                    aria-labelledby="Prénom"
+                    aria-required=true
+                    aria-invalid="false"
+                  /><br>
+                  <div class="erreur" id="erreurPrenom"></div><br>
+                </div>
+                <div
+                  class="formData">
+                  <label for="last">Nom</label><br>
+                  <input
+                    class="text-control"
+                    type="text"
+                    id="last"
+                    name="last"
+                    aria-labelledby="Nom"
+                    aria-required=true
+                    aria-invalid="false"
+                  /><br>
+                  <div class="erreur" id="erreurNom"></div><br>
+                </div>
+                <div
+                  class="formData">
+                  <label for="email">E-mail</label><br>
+                  <input
+                    class="text-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    aria-labelledby="email"
+                    aria-required=true
+                    aria-invalid="false"
+                  /><br>
+                  <div class="erreur" id="erreurMail"></div><br>
+                </div>
+                <div
+                  class="formData">
+                  <label for="message">Votre message</label><br>
+                  <textarea
+                    class="text-control text-message"                
+                    rows="5" cols="30"
+                    id="message"
+                    name="message"
+                    aria-labelledby="message"
+                    aria-required=true
+                    aria-invalid="false"
+                  ></textarea><br>
+                  <div class="erreur" id="erreurMessage"></div><br>
+                </div>
+            <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer"/>
+          </form>
+        </div>
+      </div>
       <button id="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       <div class="picturesSection">
         <form action="post">
@@ -36,75 +104,9 @@
         </div>
         <div class="afficherMedias"></div>
       </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form method="post" action="#">
-					<div
-                class="formData">
-                <label for="first">Prénom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="first"
-                  name="first"
-                  minlength="2"
-                  aria-labelledby="Prénom"
-                  aria-required=true
-                  aria-invalid="false"
-                /><br>
-                <div class="erreur" id="erreurPrenom"></div><br>
-              </div>
-              <div
-                class="formData">
-                <label for="last">Nom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="last"
-                  name="last"
-                  aria-labelledby="Nom"
-                  aria-required=true
-                  aria-invalid="false"
-                /><br>
-                <div class="erreur" id="erreurNom"></div><br>
-              </div>
-              <div
-                class="formData">
-                <label for="email">E-mail</label><br>
-                <input
-                  class="text-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  aria-labelledby="email"
-                  aria-required=true
-                  aria-invalid="false"
-                /><br>
-                <div class="erreur" id="erreurMail"></div><br>
-              </div>
-              <div
-                class="formData">
-                <label for="message">Votre message</label><br>
-                <textarea
-                  class="text-control text-message"                
-                  rows="5" cols="30"
-                  id="message"
-                  name="message"
-                  aria-labelledby="message"
-                  aria-required=true
-                  aria-invalid="false"
-                ></textarea><br>
-                <div class="erreur" id="erreurMessage"></div><br>
-              </div>
-          <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer"/>
-				</form>
-			</div>
-		</div>
+    
+    
+
      <!-- lightbox -->
     <div class="lightbox" id="lightbox" role="dialog">      
       <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close dialog" role="Button">X</button>
@@ -112,6 +114,7 @@
       <button class="lightbox__prev" onclick="previous()" aria-label="Pevious image" role="link"><i class= "fa fa-chevron-left"></i></button>
       <div class="lightbox__container" role="dialog"></div>
     </div>
+  </main>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/templates/media.js"></script>
     <script src="/scripts/templates/lightBox.js"></script>

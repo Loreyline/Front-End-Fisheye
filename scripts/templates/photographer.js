@@ -24,7 +24,7 @@ function photographerTemplate(data) {
         pPrice.setAttribute("aria-label", pPrice.textContent);
         pPrice.setAttribute("class", "prix");
         link.setAttribute("aria-role", "lien vers page du photographe");
-        link.setAttribute("aria-label", "lien vers page du photographe");
+        link.setAttribute("aria-label", `lien vers page du photographe + ${name}`);
         link.setAttribute("href", url);
 
         //indication des textes à afficher
