@@ -1,3 +1,4 @@
+/*exported openLightbox, closeLightbox, next, previous*/
 function openLightbox() {
     const box = document.getElementById("lightbox");
     box.style.display = "block";
@@ -7,12 +8,24 @@ function openLightbox() {
 function closeLightbox() {
     const box = document.getElementById("lightbox");
     box.style.display = "none";
+
 }
+// const buttons = [...document.querySelectorAll('button')]
 
-
+// buttons.forEach((element) => {
+//     element.addEventListener('keydown', (e) => {
+//         if (e.key === 'ArrowLeft') {
+//             previous();
+//         }
+//         if (e.key === 'ArrowRight') {
+//             next();
+//         }
+//     })
+// })
 
 let slideIndex = 1;
 showSlides(slideIndex);
+
 
 function next() {
     slideIndex = slideIndex + 1;

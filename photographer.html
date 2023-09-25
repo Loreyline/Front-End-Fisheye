@@ -16,72 +16,89 @@
       </a>
     </header>
     <main id="main">
-      <div id="contact_modal">
-        <div class="modal">
-          <header>
-            <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()" />
-          </header>
-          <form method="post" action="#">
-            <div
-                  class="formData">
-                  <label for="first">Prénom</label><br>
-                  <input
-                    class="text-control"
-                    type="text"
-                    id="first"
-                    name="first"
-                    minlength="2"
-                    aria-labelledby="Prénom"
-                    aria-required=true
-                    aria-invalid="false"
-                  /><br>
-                  <div class="erreur" id="erreurPrenom"></div><br>
-                </div>
-                <div
-                  class="formData">
-                  <label for="last">Nom</label><br>
-                  <input
-                    class="text-control"
-                    type="text"
-                    id="last"
-                    name="last"
-                    aria-labelledby="Nom"
-                    aria-required=true
-                    aria-invalid="false"
-                  /><br>
-                  <div class="erreur" id="erreurNom"></div><br>
-                </div>
-                <div
-                  class="formData">
-                  <label for="email">E-mail</label><br>
-                  <input
-                    class="text-control"
-                    type="email"
-                    id="email"
-                    name="email"
-                    aria-labelledby="email"
-                    aria-required=true
-                    aria-invalid="false"
-                  /><br>
-                  <div class="erreur" id="erreurMail"></div><br>
-                </div>
-                <div
-                  class="formData">
-                  <label for="message">Votre message</label><br>
-                  <textarea
-                    class="text-control text-message"                
-                    rows="5" cols="30"
-                    id="message"
-                    name="message"
-                    aria-labelledby="message"
-                    aria-required=true
-                    aria-invalid="false"
-                  ></textarea><br>
-                  <div class="erreur" id="erreurMessage"></div><br>
-                </div>
-            <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer"/>
-          </form>
+      <div id="photographerHeader">
+        <div id="contact_modal" 
+            aria-labelledby="dialog-title"
+            aria-describedby="dialog-desc"
+            aria-modal="true"
+            aria-hidden="true"
+            tabindex="-1"role="dialog">
+          <div 
+            class="modal" 
+            role="document"
+            >
+            <header>
+              <h2 id="dialog-title">Contactez-moi</h2>
+              <button type="button"
+              class="fermer"
+              aria-label="Fermer"
+              title="Fermer ce formulaire de contact"
+              data-dismiss="dialog"
+              >
+                <img src="assets/icons/close.svg" alt="fermer" onclick="closeModal()" />
+              </button>
+            </header>
+            <form method="post" action="#">
+              <div id="dialog-desc"
+                    class="formData">
+                    <label for="first">Prénom</label><br>
+                    <input
+                      class="text-control"
+                      type="text"
+                      id="first"
+                      name="first"
+                      minlength="2"
+                      aria-label="Prénom"
+                      aria-required=true
+                      aria-invalid="false"
+                    /><br>
+                    <div class="erreur" id="erreurPrenom"></div><br>
+                  </div>
+                  <div
+                    class="formData">
+                    <label for="last">Nom</label><br>
+                    <input
+                      class="text-control"
+                      type="text"
+                      id="last"
+                      name="last"
+                      aria-label="Nom"
+                      aria-required=true
+                      aria-invalid="false"
+                    /><br>
+                    <div class="erreur" id="erreurNom"></div><br>
+                  </div>
+                  <div
+                    class="formData">
+                    <label for="email">E-mail</label><br>
+                    <input
+                      class="text-control"
+                      type="email"
+                      id="email"
+                      name="email"
+                      aria-label="email"
+                      aria-required=true
+                      aria-invalid="false"
+                    /><br>
+                    <div class="erreur" id="erreurMail"></div><br>
+                  </div>
+                  <div
+                    class="formData">
+                    <label for="message">Votre message</label><br>
+                    <textarea
+                      class="text-control text-message"                
+                      rows="5" cols="30"
+                      id="message"
+                      name="message"
+                      aria-label="message"
+                      aria-required=true
+                      aria-invalid="false"
+                    ></textarea><br>
+                    <div class="erreur" id="erreurMessage"></div><br>
+                  </div>
+              <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer"/>
+            </form>
+          </div>
         </div>
       </div>
       <button id="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
@@ -117,8 +134,8 @@
   </main>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/templates/media.js"></script>
-    <script src="/scripts/templates/lightBox.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="scripts/templates/lightBox.js"></script>
+    <script src="scripts/pages/photographers.js"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

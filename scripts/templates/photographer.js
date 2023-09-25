@@ -1,3 +1,5 @@
+/* exported photographerTemplate */
+
 function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
@@ -68,7 +70,8 @@ function photographerTemplate(data) {
         pPrice.setAttribute("class", "prix");
         divPresentation.setAttribute("class", "presentation");
         button.setAttribute("class", "contact_button");
-        button.setAttribute("aria-role", "modale");
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "dialog");
         button.setAttribute("aria-label", "contactez-moi");
         divImg.setAttribute("class", "portrait");
         divImg.setAttribute("aria-role", "image");

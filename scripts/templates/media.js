@@ -1,3 +1,5 @@
+/* exported pictureTemplate*/
+
 function pictureTemplate(data) {
 
     const { id, photographerId, title, image, video, likes, date, price } = data;
@@ -57,6 +59,7 @@ function pictureTemplate(data) {
 
         //insertion des attributs des éléments
         article.setAttribute("class", "media");
+        section.setAttribute('role', 'dialog')
         source.setAttribute("src", mediaVideo);
         video.setAttribute("controls", true);
         source.setAttribute("type", "video/mp4");

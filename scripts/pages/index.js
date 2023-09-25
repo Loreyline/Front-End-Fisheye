@@ -1,3 +1,6 @@
+/*global photographerTemplate*/
+/*eslint no-undef: "error"*/
+
 async function getPhotographers() {
     const photographer = await fetch('../data/photographers.json')
         // promesse => réponse
